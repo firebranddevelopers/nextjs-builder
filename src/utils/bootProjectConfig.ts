@@ -1,7 +1,7 @@
 import path from "path"
 import fs from "fs"
 import { ProjectConfig } from "@silverstripe/nextjs-toolkit"
-import { transpileModule } from "typescript"
+import { transpileModule, ModuleKind } from "typescript"
 import dotenv from "dotenv"
 import getProjectDir from "./getProjectDir"
 
@@ -15,6 +15,7 @@ const bootProjectConfig = (): ProjectConfig => {
   const tsSource = fs.readFileSync(configFilePath, { encoding: `utf8` })
   const jsSource = transpileModule(tsSource, {
     compilerOptions: {
+      module: ModuleKind.CommonJS,
       esModuleInterop: true,
       skipLibCheck: true,
     },
