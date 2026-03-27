@@ -17,6 +17,7 @@ const bootProjectConfig = () => {
     const tsSource = fs_1.default.readFileSync(configFilePath, { encoding: `utf8` });
     const jsSource = (0, typescript_1.transpileModule)(tsSource, {
         compilerOptions: {
+            module: typescript_1.ModuleKind.CommonJS,
             esModuleInterop: true,
             skipLibCheck: true,
         },
